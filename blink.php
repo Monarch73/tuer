@@ -1,4 +1,5 @@
 <?php
+require_once 'password.php';
 if (isset($_GET['c']) && (!isset($_COOKIE['UNLOCK']) || $_COOKIE['UNLOCK'] != COOKIE_VALUE ))
 {
     $arr=unserialize(file_get_contents('code.txt'));
