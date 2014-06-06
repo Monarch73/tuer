@@ -1,7 +1,7 @@
 <?php
 require_once 'password.php';
 
-if (isset($_POST['pwd']) && $_POST['pwd'] == 'lidenise')
+if (isset($_POST['pwd']) && $_POST['pwd'] == PASSWD)
 {
 	$exp=60*60*2;
 	if (isset($_POST['expire']))
