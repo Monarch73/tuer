@@ -1,5 +1,27 @@
 <?php
-if (isset($_GET['s']) && $_GET['s'] == 'f' && isset($_COOKIE['UNLOCK']) && $_COOKIE['UNLOCK'] == '3005')
+if (isset($_GET['c']) && (!isset($_COOKIE['UNLOCK']) || $_COOKIE['UNLOCK'] != COOKIE_VALUE ))
+{
+    $arr=unserialize(file_get_contents('code.txt'));
+    if (isset($arr['code']) && $arr['code'] == $_GET['c'])
+    {
+        if (time() < $arr['expire'])
+        {
+            setcookie('UNLOCK',COOKIE_VALUE,$exp);
+            header('Location: ' .$_SERVER['PHP_SELF'].'s=f');
+            exit(0);
+        }
+        else
+        {
+            echo "Code abgelaufen";
+        }
+    }
+    else 
+    {
+        echo "keinde Daten hinterlegt";
+    }
+}
+
+if (isset($_GET['s']) && $_GET['s'] == 'f' && isset($_COOKIE['UNLOCK']) && $_COOKIE['UNLOCK'] == COOKIE_VALUE)
 {
 	 file_put_contents("/sys/class/gpio/gpio18/value", "1\n");
 	system('/bin/sleep 0.5');
