@@ -7,7 +7,7 @@ if (isset($_GET['c']) && (!isset($_COOKIE['UNLOCK']) || $_COOKIE['UNLOCK'] != CO
         if (time() < $arr['expire'])
         {
             setcookie('UNLOCK',COOKIE_VALUE,$exp);
-            header('Location: ' .$_SERVER['PHP_SELF'].'&s=f');
+            header('Location: ' .$_SERVER['PHP_SELF'].'?s=f');
             exit(0);
         }
         else
